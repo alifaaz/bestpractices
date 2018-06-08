@@ -1,0 +1,54 @@
+{
+  "name": "bestpractices",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "prestart": "babel-node  ./buildScript/startMessage.js",
+    "start": "npm-run-all --parallel scurity-check open-app lint:watch",
+    "open-app": "babel-node  ./buildScript/src",
+    "scurity-check": "nsp check",
+    "localtunnel": "lt --port 6000",
+    "lint": "esw webpack.config.production* src buildScript --color",
+    "lint:watch": "npm run lint -- --watch",
+    "share": " npm-run-all --parallel open-app localtunnel ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alifaaz/bestpractices.git"
+  },
+  "author": "ali",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alifaaz/bestpractices/issues"
+  },
+  "homepage": "https://github.com/alifaaz/bestpractices#readme",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "dotenv": "^6.0.0",
+    "express": "^4.16.3",
+    "nodemon": "^1.17.5"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-latest": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "css-loader": "^0.28.11",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "eslint-watch": "^3.1.5",
+    "faker": "^4.1.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.11.1",
+    "webpack-cli": "^3.0.3",
+    "webpack-dev-middleware": "^3.1.3"
+  }
+}
