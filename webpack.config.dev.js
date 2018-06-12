@@ -1,12 +1,17 @@
 import path from "path";
+import webpack from "webpack";
+import htmlPlugin from "html-webpack-plugin";
 module.exports = {
   mode:'development',
-  devtool:"source-map ",
-  entry: [path.resolve(__dirname,'src/index')],
+  devtool:"source-map",
+  entry: {
+    main: path.resolve(__dirname, 'src/index'),
+    vendor: path.resolve(__dirname, 'src/vendor')
+  },
   output: {
     path: path.resolve(__dirname, 'src'),
     publicPath:'/',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     rules: [
@@ -14,6 +19,11 @@ module.exports = {
       { test: /\.css$/, use: ['style-loader','css-loader'] },
     ]
   },
-  plugins:[]
+  plugins: [
+      new htmlPlugin({
+      template: 'src/index.html',
+      inject: true
+    })
+  ]
 
 };
