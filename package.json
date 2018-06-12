@@ -5,14 +5,15 @@
   "main": "app.js",
   "scripts": {
     "prestart": "babel-node  ./buildScript/startMessage.js",
-    "start": "npm-run-all --parallel scurity-check open-app lint:watch",
+    "start": "npm-run-all --parallel scurity-check open-app lint:watch test:watch",
     "open-app": "babel-node  ./buildScript/src",
     "scurity-check": "nsp check",
     "localtunnel": "lt --port 6000",
     "lint": "esw webpack.config.production* src buildScript --color",
     "lint:watch": "npm run lint -- --watch",
+    "test:watch":"npm run test -- --watch",
     "share": " npm-run-all --parallel open-app localtunnel ",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --reporter progress buildScript/testSetup.js ./test"
   },
   "repository": {
     "type": "git",
@@ -25,9 +26,11 @@
   },
   "homepage": "https://github.com/alifaaz/bestpractices#readme",
   "dependencies": {
+    "chai": "^4.1.2",
     "chalk": "^2.4.1",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "mocha": "^5.2.0",
     "nodemon": "^1.17.5"
   },
   "devDependencies": {
@@ -46,6 +49,7 @@
     "eslint-plugin-standard": "^3.1.0",
     "eslint-watch": "^3.1.5",
     "faker": "^4.1.0",
+    "jsdom": "^11.11.0",
     "style-loader": "^0.21.0",
     "webpack": "^4.11.1",
     "webpack-cli": "^3.0.3",
